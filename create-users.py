@@ -11,7 +11,8 @@ def main():
         #this "regular expression" is searching for the presence of a character - what is it and why?
         match = re.match("^#",line)
 
-        #what is this field doing?
+        print(match)
+	#what is this field doing?
         fields = line.strip().split(':')
 
         #what would an appropriate comment be for describing what this IF statement is checking for?
@@ -27,11 +28,11 @@ def main():
         print("==> Creating account for %s..." % (username))
         cmd = "/usr/sbin/adduser --disabled-password --gecos '%s' %s" % (gecos,username)
         #print cmd
-        #os.system(cmd)
+        os.system(cmd)
         print("==> Setting the password for %s..." % (username))
         cmd = "/bin/echo -ne '%s\n%s' | /usr/bin/sudo /usr/bin/passwd %s" % (password,password,username)
         #print cmd
-        #os.system(cmd)
+        os.system(cmd)
 
         for group in groups:
             #what is this if statement looking for?
