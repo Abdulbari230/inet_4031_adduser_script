@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+#### Abdulbari Ahmed
+#### Automating User Management
+#### Program Creation Date: 11/05/2024
+#### Program Last Updated Date: 11/06/2024
 
-#what are these imports being used for?
+#Import modules for system commands, regular expressions, and standard input
 import os
 import re
 import sys
@@ -8,22 +12,23 @@ import sys
 def main():
     for line in sys.stdin:
 
-        #this "regular expression" is searching for the presence of a character - what is it and why?
+        #Loop through each line provided as input to the script
         match = re.match("^#",line)
 
         print(match)
-	#what is this field doing?
+	#Split the line into fields using ':' as the delimiter, removing any extra whitespace
         fields = line.strip().split(':')
 
-        #what would an appropriate comment be for describing what this IF statement is checking for?
-        #what happens if the IF statement evaluates to true?
-        #how does this IF statement rely on what happened in the prior two lines of code? The match and fields lines.
+        #Skip processing if the line is a comment or does not have exactly 5 fields
         if match or len(fields) != 5:
             continue
 
+	#Assign values from fields to variables for user details
         username = fields[0]
         password = fields[1]
         gecos = "%s %s,,," % (fields[3],fields[2])
+	    
+	#Split the group field by ',' to allow multiple groups per user
         groups = fields[4].split(',')
         print("==> Creating account for %s..." % (username))
         cmd = "/usr/sbin/adduser --disabled-password --gecos '%s' %s" % (gecos,username)
@@ -33,9 +38,10 @@ def main():
         cmd = "/bin/echo -ne '%s\n%s' | /usr/bin/sudo /usr/bin/passwd %s" % (password,password,username)
         #print cmd
         os.system(cmd)
-
+	
+	#Loop through each group in the list for the user
         for group in groups:
-            #what is this if statement looking for?
+            #If the group is not '-', assign the user to this group
             if group != '-':
                 print("==> Assigning %s to the %s group..." % (username,group))
                 cmd = "/usr/sbin/adduser %s %s" % (username,group)
