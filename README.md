@@ -1,6 +1,6 @@
 # INET4031 Add Users Script and User List!
 
-
+# This program uses Python to automate the process of adding users and groups to a system.
 
 ## Program Description!
 This program uses Python to automate the process of adding users and groups. It simplifies the task of managing user accounts by programmatically creating users and assigning them to their respective groups based on input files.
