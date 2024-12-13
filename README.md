@@ -1,10 +1,4 @@
-# Puppet LAMP Stack
-
-This repository contains Puppet manifests for managing a LAMP stack and user configurations.
-
-## Files
-
-# INET4031 Add Users Script and User List!
+# Puppet LAMP Stack# INET4031 Add Users Script and User List!
 
 # This program uses Python to automate the process of adding users and groups to a system.
 
